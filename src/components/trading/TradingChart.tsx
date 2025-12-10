@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { createChart, IChartApi, ISeriesApi, CandlestickData } from "lightweight-charts";
+import { createChart, IChartApi, CandlestickData } from "lightweight-charts";
 import { formatPrice, formatPercentage } from "@/lib/i18n";
 import { TrendingUp, TrendingDown } from "lucide-react";
 
@@ -30,7 +30,7 @@ export function TradingChart({
 }: TradingChartProps) {
     const chartContainerRef = useRef<HTMLDivElement>(null);
     const chartRef = useRef<IChartApi | null>(null);
-    const candlestickSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
+    const candlestickSeriesRef = useRef<any>(null);
 
     const isPositive = change >= 0;
 
@@ -103,7 +103,7 @@ export function TradingChart({
     useEffect(() => {
         if (candlestickSeriesRef.current && candles.length > 0) {
             const formattedCandles: CandlestickData[] = candles.map((candle) => ({
-                time: candle.time as any,
+                time: candle.time,
                 open: candle.open,
                 high: candle.high,
                 low: candle.low,
