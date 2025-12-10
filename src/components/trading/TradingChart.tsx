@@ -70,7 +70,8 @@ export function TradingChart({
             },
         });
 
-        const candlestickSeries = chart.addSeries('Candlestick', {
+        const candlestickSeries = (chart as any).addSeries({
+            type: 'Candlestick',
             upColor: "#22c55e",
             downColor: "#ef4444",
             borderUpColor: "#22c55e",
@@ -102,8 +103,8 @@ export function TradingChart({
     // Update data when candles change
     useEffect(() => {
         if (candlestickSeriesRef.current && candles.length > 0) {
-            const formattedCandles: CandlestickData[] = candles.map((candle) => ({
-                time: candle.time,
+            const formattedCandles = candles.map((candle) => ({
+                time: candle.time as any,
                 open: candle.open,
                 high: candle.high,
                 low: candle.low,
