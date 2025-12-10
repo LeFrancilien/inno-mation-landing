@@ -20,6 +20,17 @@ export interface Asset {
     assetClass: AssetClass;
 }
 
+export interface CryptoData {
+    id: string;
+    name: string;
+    symbol: string;
+    price: number;
+    change24h: number;
+    marketCap: number;
+    volume24h: number;
+    sparkline: number[];
+}
+
 export interface ForexRate {
     pair: string;
     name: string;
