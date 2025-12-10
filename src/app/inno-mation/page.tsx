@@ -78,7 +78,7 @@ export default function InnoMationLandingPage() {
                 {/* À PROPOS */}
                 <div className="mt-12 flex flex-col md:flex-row items-center gap-6">
                     <div className="shrink-0">
-                        <div className="relative w-24 h-24 overflow-hidden rounded-full border-2 border-yellow-400 shadow-sm">
+                        <div className="relative w-24 h-24 overflow-hidden rounded-full shadow-sm">
                             <Image
                                 src="/images/farid.jpg"
                                 alt="Farid"
