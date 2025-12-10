@@ -1,8 +1,49 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function InnoMationLandingPage() {
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [formData, setFormData] = useState({ prenom: '', email: '' });
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // Trigger PDF download
+        const link = document.createElement('a');
+        link.href = '/checklist.html';
+        link.target = '_blank';
+        link.click();
+        // Show confirmation message
+        setFormSubmitted(true);
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    // Success message component
+    const SuccessMessage = () => (
+        <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+            <div className="text-4xl mb-3">🎉</div>
+            <h3 className="text-xl font-bold text-green-800 mb-2">Merci {formData.prenom} !</h3>
+            <p className="text-green-700 mb-4">
+                Votre checklist s'ouvre dans un nouvel onglet.<br />
+                Vous pouvez l'imprimer ou la sauvegarder en PDF.
+            </p>
+            <p className="text-sm text-green-600">
+                📧 Un email de confirmation vous sera envoyé prochainement.
+            </p>
+            <button
+                onClick={() => setFormSubmitted(false)}
+                className="mt-4 text-sm text-green-700 underline hover:text-green-900"
+            >
+                Télécharger à nouveau
+            </button>
+        </div>
+    );
+
     return (
         <div className="min-h-screen bg-gray-50 py-10">
             <section className="mx-auto max-w-[700px] bg-white p-10 shadow-sm rounded-lg font-sans text-[#222]">
@@ -30,28 +71,36 @@ export default function InnoMationLandingPage() {
 
                 {/* FORMULAIRE */}
                 <div className="text-center mt-8">
-                    <form className="flex flex-col items-center gap-3">
-                        <input
-                            type="text"
-                            name="prenom"
-                            placeholder="Votre prénom"
-                            className="w-4/5 max-w-[300px] p-2.5 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                            required
-                        />
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Votre email"
-                            className="w-4/5 max-w-[300px] p-2.5 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                            required
-                        />
-                        <button
-                            type="submit"
-                            className="bg-yellow-400 text-[#111] px-8 py-3 text-base font-semibold border-none mt-4 cursor-pointer rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md"
-                        >
-                            📥 Télécharger la checklist gratuite
-                        </button>
-                    </form>
+                    {formSubmitted ? (
+                        <SuccessMessage />
+                    ) : (
+                        <form onSubmit={handleSubmit} className="flex flex-col items-center gap-3">
+                            <input
+                                type="text"
+                                name="prenom"
+                                placeholder="Votre prénom"
+                                value={formData.prenom}
+                                onChange={handleInputChange}
+                                className="w-4/5 max-w-[300px] p-2.5 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                                required
+                            />
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Votre email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                className="w-4/5 max-w-[300px] p-2.5 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                                required
+                            />
+                            <button
+                                type="submit"
+                                className="bg-yellow-400 text-[#111] px-8 py-3 text-base font-semibold border-none mt-4 cursor-pointer rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md"
+                            >
+                                📥 Télécharger la checklist gratuite
+                            </button>
+                        </form>
+                    )}
                 </div>
 
                 {/* BÉNÉFICES */}
@@ -91,7 +140,7 @@ export default function InnoMationLandingPage() {
                         <h2 className="text-xl font-bold text-[#111] mb-2">👋 Qui suis-je ?</h2>
                         <p className="text-base mb-1">
                             Je suis <strong>Farid</strong>, expert en optimisation opérationnelle pour les petites structures.
-                            Depuis 10 ans, j’aide des dirigeants comme vous à structurer leurs process,
+                            Depuis 10 ans, j'aide des dirigeants comme vous à structurer leurs process,
                             sans embaucher ni exploser leur budget.
                         </p>
 
@@ -103,34 +152,42 @@ export default function InnoMationLandingPage() {
                     <h3 className="text-lg font-medium mb-6">
                         📥 Encore une fois : recevez votre checklist maintenant
                     </h3>
-                    <form className="flex flex-col items-center gap-3">
-                        <input
-                            type="text"
-                            name="prenom"
-                            placeholder="Votre prénom"
-                            className="w-4/5 max-w-[300px] p-2.5 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                            required
-                        />
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Votre email"
-                            className="w-4/5 max-w-[300px] p-2.5 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                            required
-                        />
-                        <button
-                            type="submit"
-                            className="bg-yellow-400 text-[#111] px-8 py-3 text-base font-semibold border-none mt-4 cursor-pointer rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md"
-                        >
-                            ✅ Oui, je veux la checklist
-                        </button>
-                    </form>
+                    {formSubmitted ? (
+                        <SuccessMessage />
+                    ) : (
+                        <form onSubmit={handleSubmit} className="flex flex-col items-center gap-3">
+                            <input
+                                type="text"
+                                name="prenom"
+                                placeholder="Votre prénom"
+                                value={formData.prenom}
+                                onChange={handleInputChange}
+                                className="w-4/5 max-w-[300px] p-2.5 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                                required
+                            />
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Votre email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                className="w-4/5 max-w-[300px] p-2.5 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                                required
+                            />
+                            <button
+                                type="submit"
+                                className="bg-yellow-400 text-[#111] px-8 py-3 text-base font-semibold border-none mt-4 cursor-pointer rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md"
+                            >
+                                ✅ Oui, je veux la checklist
+                            </button>
+                        </form>
+                    )}
                 </div>
 
                 {/* FOOTER */}
                 <footer className="mt-12 text-sm text-center text-[#999] border-t border-gray-100 pt-6">
                     <p className="mb-2">
-                        📞 Envie d’aller plus loin ? <Link href="https://calendly.com/" target="_blank" className="text-blue-600 hover:underline">Réservez un audit gratuit ici</Link>
+                        📞 Envie d'aller plus loin ? <Link href="https://calendly.com/" target="_blank" className="text-blue-600 hover:underline">Réservez un audit gratuit ici</Link>
                     </p>
                     <p>© Inno-Mation | Mentions légales | RGPD</p>
                 </footer>

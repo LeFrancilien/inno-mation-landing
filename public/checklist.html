@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist - 10 Actions pour Gagner 5h/semaine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #facc15 0%, #f59e0b 100%);
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            color: #111;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #333;
+            font-size: 16px;
+        }
+        .content {
+            padding: 40px;
+        }
+        .intro {
+            background: #f8fafc;
+            border-left: 4px solid #facc15;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 0 10px 10px 0;
+        }
+        .intro p {
+            color: #555;
+            line-height: 1.6;
+        }
+        .checklist {
+            list-style: none;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            background: #fefce8;
+            border-radius: 12px;
+            border: 1px solid #fde047;
+            transition: transform 0.2s;
+        }
+        .checklist-item:hover {
+            transform: translateX(5px);
+        }
+        .checkbox {
+            width: 28px;
+            height: 28px;
+            border: 3px solid #facc15;
+            border-radius: 6px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .item-content h3 {
+            color: #111;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .item-content p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .item-number {
+            background: #facc15;
+            color: #111;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .footer {
+            background: #111;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        .footer h3 {
+            color: #facc15;
+            margin-bottom: 10px;
+        }
+        .footer p {
+            color: #aaa;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #facc15;
+            text-decoration: none;
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 10 Actions pour Gagner 5h/semaine</h1>
+            <p>Checklist pratique par Farid | Inno-Mation</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <p><strong>Félicitations !</strong> Vous avez fait le premier pas vers une meilleure gestion de votre temps. 
+                Cochez chaque action une fois réalisée et observez le temps que vous récupérez chaque semaine.</p>
+            </div>
+            
+            <ul class="checklist">
+                <li class="checklist-item">
+                    <span class="item-number">1</span>
+                    <div class="checkbox"></div>
+                    <div class="item-content">
+                        <h3>Automatisez vos réponses emails récurrentes</h3>
+                        <p>Créez des modèles de réponses pour les questions fréquentes. Utilisez les réponses suggérées de Gmail ou configurez des templates.</p>
+                    </div>
+                </li>
+                
+                <li class="checklist-item">
+                    <span class="item-number">2</span>
+                    <div class="checkbox"></div>
+                    <div class="item-content">
+                        <h3>Bloquez des créneaux "focus" dans votre agenda</h3>
+                        <p>Réservez 2h par jour sans interruption pour vos tâches importantes. Désactivez les notifications pendant ces créneaux.</p>
+                    </div>
+                </li>
+                
+                <li class="checklist-item">
+                    <span class="item-number">3</span>
+                    <div class="checkbox"></div>
+                    <div class="item-content">
+                        <h3>Déléguez les tâches à faible valeur ajoutée</h3>
+                        <p>Identifiez 3 tâches que vous pouvez déléguer ou externaliser cette semaine. Le temps libéré vaut plus que le coût.</p>
+                    </div>
+                </li>
+                
+                <li class="checklist-item">
+                    <span class="item-number">4</span>
+                    <div class="checkbox"></div>
+                    <div class="item-content">
+                        <h3>Mettez en place une routine matinale efficace</h3>
+                        <p>Commencez par la tâche la plus importante avant de consulter vos emails. Les 2 premières heures sont les plus productives.</p>
+                    </div>
+                </li>
+                
+                <li class="checklist-item">
+                    <span class="item-number">5</span>
+                    <div class="checkbox"></div>
+                    <div class="item-content">
+                        <h3>Regroupez vos réunions sur 2-3 jours</h3>
+                        <p>Évitez les réunions dispersées. Concentrez-les pour libérer des journées entières de travail en profondeur.</p>
+                    </div>
+                </li>
+                
+                <li class="checklist-item">
+                    <span class="item-number">6</span>
+                    <div class="checkbox"></div>
+                    <div class="item-content">
+                        <h3>Utilisez un outil de planification de RDV</h3>
+                        <p>Calendly, Cal.com ou similaire : fini les 10 emails pour caler un créneau. Partagez votre lien et c'est réglé.</p>
+                    </div>
+                </li>
+                
+                <li class="checklist-item">
+                    <span class="item-number">7</span>
+                    <div class="checkbox"></div>
+                    <div class="item-content">
+                        <h3>Automatisez vos factures et relances</h3>
+                        <p>Configurez l'envoi automatique des factures et les rappels de paiement. Ne perdez plus de temps sur l'administratif.</p>
+                    </div>
+                </li>
+                
+                <li class="checklist-item">
+                    <span class="item-number">8</span>
+                    <div class="checkbox"></div>
+                    <div class="item-content">
+                        <h3>Créez une FAQ ou base de connaissances</h3>
+                        <p>Documentez les réponses aux questions récurrentes (clients, équipe). Un lien vaut mieux qu'une explication répétée.</p>
+                    </div>
+                </li>
+                
+                <li class="checklist-item">
+                    <span class="item-number">9</span>
+                    <div class="checkbox"></div>
+                    <div class="item-content">
+                        <h3>Limitez les canaux de communication</h3>
+                        <p>Choisissez 2-3 canaux max (email + 1 messagerie). Évitez la dispersion entre WhatsApp, Slack, SMS, etc.</p>
+                    </div>
+                </li>
+                
+                <li class="checklist-item">
+                    <span class="item-number">10</span>
+                    <div class="checkbox"></div>
+                    <div class="item-content">
+                        <h3>Faites un bilan hebdomadaire de 15 minutes</h3>
+                        <p>Chaque vendredi : qu'est-ce qui a fonctionné ? Qu'est-ce qui peut être amélioré ? Planifiez la semaine suivante.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <h3>📞 Besoin d'aller plus loin ?</h3>
+            <p>Réservez un audit gratuit de 30 minutes avec Farid</p>
+            <p style="margin-top: 15px;"><a href="https://calendly.com/">calendly.com</a></p>
+            <p style="margin-top: 20px; font-size: 12px;">© Inno-Mation | www.inno-mation.com</p>
+        </div>
+    </div>
+</body>
+</html>
