@@ -31,6 +31,12 @@ export interface CryptoData {
     sparkline: number[];
 }
 
+export interface ChartDataPoint {
+    date: string;
+    price: number;
+    volume: number;
+}
+
 export interface ForexRate {
     pair: string;
     name: string;
