@@ -1,6 +1,7 @@
 "use client";
 
-import { AssetClass, FR_LABELS } from "@/lib/i18n";
+import { AssetClass } from "@/lib/api";
+import { FR_LABELS } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 interface AssetClassTabsProps {
