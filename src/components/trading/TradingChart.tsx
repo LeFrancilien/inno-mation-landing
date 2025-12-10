@@ -70,7 +70,7 @@ export function TradingChart({
             },
         });
 
-        const candlestickSeries = chart.addCandlestickSeries({
+        const candlestickSeries = chart.addSeries('Candlestick', {
             upColor: "#22c55e",
             downColor: "#ef4444",
             borderUpColor: "#22c55e",
