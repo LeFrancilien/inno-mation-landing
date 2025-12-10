@@ -24,7 +24,6 @@ export const FR_LABELS = {
     total: "Total",
 
     // Stats
-    price: "Prix",
     change: "Variation",
     volume: "Volume",
     marketCap: "Cap. marché",
