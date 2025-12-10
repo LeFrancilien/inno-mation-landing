@@ -7,21 +7,56 @@ import Link from 'next/link';
 export default function InnoMationLandingPage() {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formData, setFormData] = useState({ prenom: '', email: '' });
+    const [isLoading, setIsLoading] = useState(false);
+    const [emailError, setEmailError] = useState<string | null>(null);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Trigger PDF download
-        const link = document.createElement('a');
-        link.href = '/checklist.html';
-        link.target = '_blank';
-        link.click();
-        // Show confirmation message
-        setFormSubmitted(true);
+        setIsLoading(true);
+        setEmailError(null);
+
+        try {
+            // Envoyer l'email via l'API
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Erreur lors de l\'envoi');
+            }
+
+            // Ouvrir la checklist dans un nouvel onglet
+            const link = document.createElement('a');
+            link.href = '/checklist.html';
+            link.target = '_blank';
+            link.click();
+
+            // Afficher le message de succès
+            setFormSubmitted(true);
+        } catch (err) {
+            console.error('Erreur:', err);
+            setEmailError(err instanceof Error ? err.message : 'Une erreur est survenue');
+            // Ouvrir quand même la checklist
+            const link = document.createElement('a');
+            link.href = '/checklist.html';
+            link.target = '_blank';
+            link.click();
+            setFormSubmitted(true);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+
 
     // Success message component
     const SuccessMessage = () => (
@@ -29,8 +64,8 @@ export default function InnoMationLandingPage() {
             <div className="text-4xl mb-3">🎉</div>
             <h3 className="text-xl font-bold text-green-800 mb-2">Merci {formData.prenom} !</h3>
             <p className="text-green-700 mb-4">
-                Votre checklist s'ouvre dans un nouvel onglet.<br />
-                Vous pouvez l'imprimer ou la sauvegarder en PDF.
+                Votre checklist s&apos;ouvre dans un nouvel onglet.<br />
+                Vous pouvez l&apos;imprimer ou la sauvegarder en PDF.
             </p>
             <p className="text-sm text-green-600">
                 📧 Un email de confirmation vous sera envoyé prochainement.
@@ -93,11 +128,15 @@ export default function InnoMationLandingPage() {
                                 className="w-4/5 max-w-[300px] p-2.5 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
                                 required
                             />
+                            {emailError && (
+                                <p className="text-red-500 text-sm mb-2">{emailError}</p>
+                            )}
                             <button
                                 type="submit"
-                                className="bg-yellow-400 text-[#111] px-8 py-3 text-base font-semibold border-none mt-4 cursor-pointer rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md"
+                                disabled={isLoading}
+                                className="bg-yellow-400 text-[#111] px-8 py-3 text-base font-semibold border-none mt-4 cursor-pointer rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                📥 Télécharger la checklist gratuite
+                                {isLoading ? '⏳ Envoi en cours...' : '📥 Télécharger la checklist gratuite'}
                             </button>
                         </form>
                     )}
@@ -139,8 +178,8 @@ export default function InnoMationLandingPage() {
                     <div>
                         <h2 className="text-xl font-bold text-[#111] mb-2">👋 Qui suis-je ?</h2>
                         <p className="text-base mb-1">
-                            Je suis <strong>Farid</strong>, expert en optimisation opérationnelle pour les petites structures.
-                            Depuis 10 ans, j'aide des dirigeants comme vous à structurer leurs process,
+                            Je suis <strong>Farid</strong>, expert en optimisation opérationnelle pour les petites et moyennes structures.
+                            Depuis 10 ans, j&apos;aide des dirigeants comme vous à structurer leurs process,
                             sans embaucher ni exploser leur budget.
                         </p>
 
@@ -174,11 +213,15 @@ export default function InnoMationLandingPage() {
                                 className="w-4/5 max-w-[300px] p-2.5 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
                                 required
                             />
+                            {emailError && (
+                                <p className="text-red-500 text-sm mb-2">{emailError}</p>
+                            )}
                             <button
                                 type="submit"
-                                className="bg-yellow-400 text-[#111] px-8 py-3 text-base font-semibold border-none mt-4 cursor-pointer rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md"
+                                disabled={isLoading}
+                                className="bg-yellow-400 text-[#111] px-8 py-3 text-base font-semibold border-none mt-4 cursor-pointer rounded-full hover:bg-yellow-500 transition-colors duration-300 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                ✅ Oui, je veux la checklist
+                                {isLoading ? '⏳ Envoi en cours...' : '✅ Oui, je veux la checklist'}
                             </button>
                         </form>
                     )}
@@ -187,7 +230,7 @@ export default function InnoMationLandingPage() {
                 {/* FOOTER */}
                 <footer className="mt-12 text-sm text-center text-[#999] border-t border-gray-100 pt-6">
                     <p className="mb-2">
-                        📞 Envie d'aller plus loin ? <Link href="https://calendly.com/" target="_blank" className="text-blue-600 hover:underline">Réservez un audit gratuit ici</Link>
+                        📞 Envie d&apos;aller plus loin ? <Link href="https://calendly.com/" target="_blank" className="text-blue-600 hover:underline">Réservez un audit gratuit ici</Link>
                     </p>
                     <p>© Inno-Mation | Mentions légales | RGPD</p>
                 </footer>
